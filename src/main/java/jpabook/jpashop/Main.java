@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import jpabook.jpashop.domain.Book;
+import jpabook.jpashop.domain.Item;
 import jpabook.jpashop.domain.Member;
 
 public class Main {
@@ -18,13 +20,13 @@ public class Main {
 
         try {
 
-            Member member = new Member();
-            member.setName("han");
-            member.setStreetName("seoul");
+            Book book = new Book();
+            book.setName("JPA");
+            book.setPrice(50000);
+            book.setAuthor("김영한");
 
-            Member findMember = em.find(Member.class, 1L);
+            em.persist(book);
 
-            em.persist(member);
             tx.commit();
 
         } catch (Exception e) {
