@@ -20,17 +20,32 @@ public class Main {
 
         try {
 
-            Book book = new Book();
-            book.setName("JPA");
-            book.setPrice(50000);
-            book.setAuthor("김영한");
+            Member member = new Member();
+            member.setName("Han");
+            
+            em.persist(member);
 
-            em.persist(book);
+            em.flush();
+            em.clear();
 
+            Member proxyMember = em.getReference(Member.class, member.getId());
+
+            em.flush();
+            em.clear();
+
+//            String name = proxyMember.getName();
+//            System.out.println("name = " + name);
+//            Member findMember = em.find(Member.class, member.getId());
+//            boolean isSame = findMember == proxyMember;
+//
+//            System.out.println("isSame = " + isSame);
+//            System.out.println("findMember.getClass() : " + findMember.getClass());
+//            System.out.println("Member.getClass() : " + proxyMember.getClass());
             tx.commit();
 
         } catch (Exception e) {
             tx.rollback();
+            e.printStackTrace();
         } finally {
             em.close();
         }
