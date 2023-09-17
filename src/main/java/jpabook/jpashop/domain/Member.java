@@ -1,6 +1,8 @@
 package jpabook.jpashop.domain;
 
+import java.time.LocalDateTime;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,10 +28,10 @@ public class Member extends BaseEntity{
 
     private String name;
 
-    private String city;
+    @Embedded
+    private Period workPeriod;
 
-    private String streetName;
-
-    private String zipcode;
+    @Embedded
+    private Address homeAddress;
 
 }

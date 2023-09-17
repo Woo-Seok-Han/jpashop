@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,4 +30,7 @@ public class Delivery {
 
     @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
     private Order order;
+
+    @Embedded
+    private Address address;
 }
